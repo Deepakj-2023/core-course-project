@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+{% block content %}
+    <style>
+        /* Floating effect for cards */
+        .floating-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Floating effect for buttons */
+        .floating-btn {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .floating-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hover effect for list items */
+        .hover-list .hover-item {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .hover-list .hover-item:hover {
+            background-color: #f0f0f0;
+            transform: translateX(5px);
+        }
+
+        /* Custom text styling */
+        .text-primary {
+            color: #007bff;
+        }
+    </style>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {% if pred == 1 %}
+                <div class="card card-body alert alert-danger text-center floating-card">
+                    <h4>Sorry! Please consult a DOCTOR.</h4>
+                </div>
+
+                {% if additional_info %}
+                    <div class="mt-4">
+                        <h3 class="text-primary">Description:</h3>
+                        <p>{{ additional_info.description }}</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="text-primary">Recommended Diets:</h3>
+                        <p>{{ additional_info.diets }}</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="text-primary">Medications:</h3>
+                        <p>{{ additional_info.medications }}</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="text-primary">Precautions:</h3>
+                        <p>{{ additional_info.precautions }}</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="text-primary">Suggested Workout:</h3>
+                        <p>{{ additional_info.workout }}</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="text-primary">Top 5 Hospitals:</h3>
+                        <ul class="list-group hover-list">
+                            {% for index, row in additional_info.hospitals.iterrows() %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center hover-item">
+                                    {{ row['hospital'] }}
+                                    <span class="badge badge-primary badge-pill">{{ row['rating'] }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                
+            {% else %}
+                <div class="card card-body alert alert-success text-center floating-card">
+                    <h4>Great! You are HEALTHY.</h4>
+                </div>
+            {% endif %}
+
+            <div class="text-center mt-4">
+                <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg floating-btn">Back to Home</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

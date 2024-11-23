@@ -1,0 +1,124 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background for a clean look */
+        color: #343a40; /* Dark text color for readability */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    }
+
+    .container {
+        margin-top: 30px;
+    }
+
+    .card {
+        background-color: #ffffff; /* White card background */
+        border: 1px solid #dee2e6; /* Light gray border for definition */
+        border-radius: 12px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        padding: 30px; /* Spacious padding */
+        max-width: 600px; /* Limit width for readability */
+        margin: auto; /* Center align */
+    }
+
+    .card h1 {
+        color: #343a40; /* Dark text for headings */
+        font-size: 24px; /* Larger font size for emphasis */
+        margin-bottom: 20px; /* Space below heading */
+        text-align: center; /* Center align heading */
+    }
+
+    .form-control {
+        background-color: #ffffff; /* White input background */
+        border: 1px solid #ced4da; /* Light gray border */
+        color: #495057; /* Dark text color */
+        border-radius: 8px; /* Rounded corners */
+        margin-bottom: 15px; /* Space between inputs */
+        padding: 12px; /* Padding inside inputs */
+        transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+        font-size: 16px; /* Larger font size for readability */
+    }
+
+    .form-control::placeholder {
+        color: #6c757d; /* Light gray placeholder text */
+    }
+
+    .form-control:focus {
+        border-color: #007bff; /* Blue border on focus */
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
+        outline: none; /* Remove default outline */
+    }
+
+    .btn-info {
+        background-color: #007bff; /* Blue button */
+        border-color: #007bff; /* Blue border */
+        color: #ffffff; /* White text */
+        border-radius: 8px; /* Rounded corners */
+        padding: 12px 25px; /* Increased padding */
+        font-size: 16px; /* Larger font size */
+        transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+        text-transform: uppercase; /* Uppercase text for emphasis */
+        font-weight: bold; /* Bold text */
+        cursor: pointer; /* Pointer cursor */
+    }
+
+    .btn-info:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+        border-color: #004085; /* Darker blue border on hover */
+    }
+
+    .alert-danger {
+        background-color: #f8d7da; /* Light red background for error alerts */
+        color: #721c24; /* Dark red text */
+        border: 1px solid #f5c6cb; /* Light red border */
+        border-radius: 8px; /* Rounded corners */
+        padding: 15px; /* Increased padding */
+        margin-bottom: 20px; /* Space below alert */
+        font-size: 16px; /* Larger font size */
+    }
+
+    .alert-danger strong {
+        font-weight: bold; /* Bold text for emphasis */
+    }
+</style>
+
+{% if message %}
+    <div class="alert alert-danger">
+        <strong>Error:</strong> {{ message }}
+    </div>
+{% endif %}
+
+<div class="container">
+    <div class="card card-body">
+        <h1>Diabetes Predictor</h1>
+        <form class="form-horizontal" action="{{ url_for('predictPage') }}" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" name="pregnancies" placeholder="Number of Pregnancies eg. 0">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="glucose" placeholder="Glucose (mg/dL) eg. 80">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="bloodpressure" placeholder="Blood Pressure (mmHg) eg. 80">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="skinthickness" placeholder="Skin Thickness (mm) eg. 20">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="insulin" placeholder="Insulin Level (IU/mL) eg. 80">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="bmi" placeholder="Body Mass Index (kg/m²) eg. 23.1">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="dpf" placeholder="Diabetes Pedigree Function eg. 0.52">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="age" placeholder="Age (years) eg. 34">
+            </div>
+
+            <input type="submit" class="btn btn-info btn-block" value="Predict">
+        </form>
+    </div>
+</div>
+{% endblock %}

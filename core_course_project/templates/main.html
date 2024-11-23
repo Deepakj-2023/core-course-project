@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="og:title" content="Dj Disease Predictor">
+  <meta name="author" content="Deepak J">
+  <meta name="og:image" content="static/logo1.png">
+  <meta name="Keywords" content="Flask, Machine Learning, Deep Learning, Artificial Intelligence, AI, ML,DL, Web Development">
+  <meta name="description" content="A Machine Learning and Deep Learning based webapp for Multiple Disease Prediction.">
+  <title>Disease Predictor</title>
+  <link rel="icon" href="{{ url_for('static', filename = 'logo1.png') }}" type="image/icon type">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  <style>
+    html, body { height: 100%; margin: 0; }
+    header { height: 50px; }
+    footer { height: 75px; background: black; }
+    body { display: flex; flex-direction: column; }
+    footer {
+      padding: 10px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .navbar-brand img {
+      height: 60px;
+      width: auto;
+    }
+    .form-title {
+      color: #333;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 30px;
+    }
+    .form-card {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .input-field {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 15px;
+      transition: border-color 0.3s ease;
+    }
+    .input-field:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+    }
+    .submit-btn {
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      padding: 15px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="background-color: black !important;">
+    <a class="navbar-brand" href="{{ url_for('home') }}">
+      <img src="https://img.freepik.com/free-vector/isolated-medicine-symbol_1017-361.jpg?size=626&ext=jpg&ga=GA1.1.1000492264.1717685907&semt=ais_hybrid" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('diabetesPage') }}">Diabetes</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('cancerPage') }}">Breast Cancer</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('heartPage') }}">Heart</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('kidneyPage') }}">Kidney</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('liverPage') }}">Liver</a>
+        </li>
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('malariaPage') }}">Malaria</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('pneumoniaPage') }}">Pneumonia</a>
+        </li> -->
+      </ul>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <br>
+  <main>
+    <div class="container-fluid" style="margin-bottom: 20px;">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+  <footer>
+    <center>
+      <ul style="list-style-type: none;">
+        <li style="display: inline;"><a href="https://www.linkedin.com/in/deepak-j-aids-b6a533292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" style="color: white;" target="blank"><span class="fa fa-linkedin"> LinkedIn</span></a></li>
+        &nbsp;
+        <li style="display: inline;"><a href="https://github.com/Deepakj-2023" style="color: white;" target="blank"><span class="fa fa-github"> GitHub</span></a></li>
+        <li><p style="color: white;">Made with by Deepak J and Aswin M</p></li>
+      </ul>
+    </center>
+  </footer>
+</body>
+</html>
